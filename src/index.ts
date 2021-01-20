@@ -2,9 +2,8 @@ if (process.env.NODE_ENV || "development" === "development")
     require("dotenv").config(require("path").join(__dirname, "..", ".env"));
 
 import discord from "discord.js";
-import { readFileSync } from "fs";
-import { join } from "path";
 import dayjs from "dayjs";
+import t from "./timings.json";
 
 const client = new discord.Client();
 
@@ -12,9 +11,7 @@ client.on("ready", () => {
     console.log("Connnected as " + client.user.tag);
 
     setInterval(async () => {
-        const data = JSON.parse(
-            readFileSync(join(__dirname, "timings.json")).toString()
-        );
+        const data = t;
 
         const { classStartTimings, classEndTimings } = data;
 
